@@ -59,6 +59,7 @@
 			<artifactId>okta-spring-boot-starter</artifactId>
 			<version>0.6.1</version>
 		</dependency>
+		
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

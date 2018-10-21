@@ -24,7 +24,9 @@ public class MainApplication {
 		return new ResourceServerConfigurerAdapter() {
 			@Override
 			public void configure(HttpSecurity http) throws Exception {
-				http.authorizeRequests().anyRequest().authenticated();
+				http.authorizeRequests()
+						.antMatchers("/", "/index.html", "/widget.html", "/app-name", "/sign-in-widget-config").permitAll()
+						.anyRequest().authenticated();
 			}
 		};
 	}
