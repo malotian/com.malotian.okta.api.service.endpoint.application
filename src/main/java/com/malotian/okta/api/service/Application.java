@@ -24,18 +24,17 @@ public class Application {
 		return new ResourceServerConfigurerAdapter() {
 			@Override
 			public void configure(HttpSecurity http) throws Exception {
-				http.authorizeRequests()
-						.antMatchers("/", "/favicon.ico", "/index.html", "/widget.html", "/app-name", "/sign-in-widget-config").permitAll()
-						.anyRequest().authenticated();
+				http.authorizeRequests().antMatchers("/", "/favicon.ico", "/css/**", "/js/**", "/images/**", "/index.html", "/widget.html", "/app-name", "/sign-in-widget-config")
+						.permitAll().anyRequest().authenticated();
 			}
 		};
 	}
-	
+
 	@EnableGlobalMethodSecurity(prePostEnabled = true)
 	protected static class GlobalSecurityConfiguration extends GlobalMethodSecurityConfiguration {
-	   @Override
-	   protected MethodSecurityExpressionHandler createExpressionHandler() {
-	       return new OAuth2MethodSecurityExpressionHandler();
-	   }
-	}	
+		@Override
+		protected MethodSecurityExpressionHandler createExpressionHandler() {
+			return new OAuth2MethodSecurityExpressionHandler();
+		}
+	}
 }
