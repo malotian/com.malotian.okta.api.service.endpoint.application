@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServletServerHttpRequest;
@@ -17,19 +19,21 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 public class ServiceController {
 
+	Logger logger = LoggerFactory.getLogger(ServiceController.class);
+
 	@Value("${appname}")
 	private String appname;
 
 	@Value("${appname}-everyone")
 	private String everyone;
-	
+
 	@Value("${appname}-admin")
 	private String admin;
-	
+
 	public String everyone() {
 		return everyone;
 	}
-	
+
 	public String admin() {
 		return admin;
 	}
@@ -46,6 +50,7 @@ public class ServiceController {
 		result.put("user", principal.getName());
 		result.put("api", UriComponentsBuilder.fromHttpRequest(new ServletServerHttpRequest(request)).build().toUriString());
 		result.put("api-result", "SUCCESS");
+		logger.info("executed: {}", request.getRequestURL());
 		return result;
 	}
 
@@ -56,6 +61,7 @@ public class ServiceController {
 		result.put("user", principal.getName());
 		result.put("api", UriComponentsBuilder.fromHttpRequest(new ServletServerHttpRequest(request)).build().toUriString());
 		result.put("api-result", "SUCCESS");
+		logger.info("executed: {}", request.getRequestURL());
 		return result;
 	}
 }
