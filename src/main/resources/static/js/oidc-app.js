@@ -84,9 +84,10 @@ define(["jquery", "okta-auth-sdk", "okta-config"], function ($, OktaAuth, OktaCo
   });
 
   client.tokenManager.on('refreshed', function (key, token) {
+	resetDisplay();
+    displayClaims([client.tokenManager.get(ID_TOKEN_KEY), client.tokenManager.get(ACCESS_TOKEN_KEY)]);
     if (key === ID_TOKEN_KEY) {
       console.log('refreshed a new id_token');
-      displayClaims(token.claims);
     } else if (key === ACCESS_TOKEN_KEY) {
       console.log('refreshed a new access_token');
     }
@@ -183,7 +184,6 @@ define(["jquery", "okta-auth-sdk", "okta-config"], function ($, OktaAuth, OktaCo
     });
 
     $('#btn-refresh').click(function () {
-      resetDisplay();
       client.tokenManager.refresh(ID_TOKEN_KEY);
       client.tokenManager.refresh(ACCESS_TOKEN_KEY);
     });
