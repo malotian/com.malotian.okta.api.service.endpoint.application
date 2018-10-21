@@ -1,0 +1,23 @@
+okta:
+ oauth2:
+   # Client ID from above step
+   clientId: 0oadve4kd8K5o0r3x0h7
+   issuer: https://dev-904187.oktapreview.com/oauth2/default
+   
+spring:
+  profiles:
+    active: "foo"
+---
+spring:
+  profiles: foo
+server:
+  port: 8081
+appname: foo
+   
+---
+spring:
+  profiles: bar
+server:
+  port: 8082
+appname: bar
+ 
