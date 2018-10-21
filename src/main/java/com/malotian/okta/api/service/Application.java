@@ -34,6 +34,7 @@ public class Application {
 		};
 	}
 
+	
 	@EnableGlobalMethodSecurity(prePostEnabled = true)
 	protected static class GlobalSecurityConfiguration extends GlobalMethodSecurityConfiguration {
 		@Override
